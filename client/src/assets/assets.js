@@ -175,10 +175,10 @@ export const footerLinks = [
   {
     title: "Follow Us",
     links: [
-      { text: "Instagram", url: "#" },
-      { text: "Twitter", url: "#" },
-      { text: "Facebook", url: "#" },
-      { text: "YouTube", url: "#" },
+      { text: "LinkedIn", url: "https://www.linkedin.com/in/inshaxkhan" },
+      { text: "Github", url: "https://github.com/inshaxkhan" },
+      { text: "Leetcode", url: "https://leetcode.com/u/inshaxkhan/" },
+      { text: "YouTube", url: "https://www.youtube.com/@inshaxkhan" },
     ],
   },
 ];

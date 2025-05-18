@@ -21,7 +21,7 @@ export const AppContextProvider = ({children}) =>{
     }
 
     //add products to cart
-    const addToCart=()=>{
+    const addToCart=(itemId)=>{
         let cartData=structuredClone(cartItems);
         if(cartData[itemId]){
             cartData[itemId]+=1;
