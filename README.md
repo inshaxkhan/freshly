@@ -42,3 +42,20 @@ This project includes both **customer interface** and **admin panel**, supports 
 | Vercel         | Frontend deployment      |
 
 ---
+
+## 📸 User Interface for clients:
+
+### 1. Home Page
+![Home Page](./screenshots/1.png)
+
+### 2. All Products page
+![All Products page](./screenshots/2.png)
+
+### 3. My Orders page
+![My Orders page](./screenshots/3.png)
+
+### 4. Product Detail page
+![Product Detail page](./screenshots/4.png)
+
+### 5. Footer
+![Footer](./screenshots/5.png)
