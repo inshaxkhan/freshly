@@ -19,5 +19,3 @@ const authSeller = async (req, res, next) => {
 };
 
 export default authSeller
-
-// create middleware for seller authentication
