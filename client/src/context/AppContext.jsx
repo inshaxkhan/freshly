@@ -22,7 +22,7 @@ export const AppContextProvider = ({children}) =>{
     const [cartItems, setCartItems]= useState({});
     const [searchQuery, setSearchQuery]= useState({});
 
-    // check status of seller: is authenticated or not 
+    // check status of seller: is authenticated or not (to avoid change of state to false,  on reloading the page) 
     const fetchSeller=async()=>{
         try {
             const {data}=await axios.get('/api/seller/is-auth');
@@ -98,7 +98,7 @@ const getCartAmount=()=>{
 }
 
     useEffect(()=>{
-        fetchSeller()
+        fetchSeller( )
         fetchProducts()
     },[])
 
