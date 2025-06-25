@@ -16,6 +16,7 @@ const SellerLayout = () => {
     { name: "Orders", path: "/seller/orders", icon: assets.order_icon },
   ];
 
+  //seller logout functionality with Axios and toast notifications
   const logout = async () => {
     try {
       const {data}=await axios.get('/api/seller/logout');
@@ -54,7 +55,7 @@ const SellerLayout = () => {
       <div className="flex">
         <div className="md:w-64 w-16 border-r h-[95vh] text-base border-gray-300 pt-4 flex flex-col ">
           {sidebarLinks.map((item) => (
-            <NavLinkerror
+            <NavLink
               to={item.path}
               key={item.name}
               end={item.path==="/seller"}
