@@ -31,7 +31,7 @@ const handleChange=(e)=>{
   const {name, value} = e.target;
 
   setAddress((prevAddress)=>({
-    ...prevAdress,
+    ...prevAddress,
     [name]: value,
   }))
 }
