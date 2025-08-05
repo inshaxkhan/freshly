@@ -36,6 +36,21 @@ export const AppContextProvider = ({children}) =>{
         }
     }
 
+    // fetch user auth status, get user data & cart items
+    const fetchUser=async()=>{
+        try {
+            const {data}=await axios.get('/api/user/is-auth');
+            if(data.success){
+                setUser(data.user);
+                setCartItems(data.user.cartItems);
+                toast.success("Logged In")
+            }
+        } catch (error) {
+            setUser(null);
+            toast.error(error.message)
+        }
+    }
+
     //fetch all products
     const fetchProducts=async()=>{
         try {
@@ -108,8 +123,9 @@ const getCartAmount=()=>{
 }
 
     useEffect(()=>{
-        fetchSeller()
-        fetchProducts()
+        fetchUser();
+        fetchSeller();
+        fetchProducts();
     },[])
 
     const value={ navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin, 
