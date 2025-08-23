@@ -18,8 +18,8 @@ export const addAddress= async(req, res)=>{
 
 export const getAddress=async(req,res)=>{
     try {
-        console.log(req.body); 
-        const {userId}=req.body
+        console.log(req.userId); 
+        // const userId=req.user.id
         
         const addresses=await Address.find({userId})
         res.json({success:true, addresses})

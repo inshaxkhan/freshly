@@ -148,7 +148,7 @@ const getCartAmount=()=>{
 
     const value={ navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin, 
         products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery,
-        getCartCount, getCartAmount, axios, fetchProducts 
+        getCartCount, getCartAmount, axios, fetchProducts , setCartItems
     }
     
     return <AppContext.Provider value={value}>
