@@ -5,7 +5,8 @@ import Product from "../models/Product.js"
 // place order COD: /api/order/cod
 export const placeOrderCOD= async(req, res)=>{
     try {
-        const {userId, items, address}=req.body
+        const { items, address } = req.body;
+    const userId = req.userId;  // from auth middleware
         if(!address || items.length===0){
             return res.json({success:false, message:"Invalid data "})
         }
