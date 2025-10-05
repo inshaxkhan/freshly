@@ -42,12 +42,13 @@ const handleChange=(e)=>{
 const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const {data}= await axios.post('/api/address/add', {address:address, userId:user._id})
+      const {data}= await axios.post('/api/address/add', {address:address})
 
       if(data.success){
         toast.success(data.message);
         navigate('/cart');
       }else{
+        console.log("ERROR HERE")
         toast.error(data.message);
       }
 
@@ -91,7 +92,7 @@ useEffect(()=>{
           </form>
         </div>
         <img
-          src={assets.add_address_iamge}
+          src={assets.add_addres_image}
           alt="add address"
           className="md:mr-16 mb-16 md:mt-0"
         />

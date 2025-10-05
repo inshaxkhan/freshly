@@ -32,6 +32,7 @@ const Cart = () => {
                 }
             }else{
                 toast.error(data.message)
+                console.log("ERROR HERE")
             }
         } catch (error) {
             toast.error(error.message)
