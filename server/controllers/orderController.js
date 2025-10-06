@@ -39,7 +39,7 @@ export const placeOrderCOD= async(req, res)=>{
 // get orders by userId: /api/order/user
 export const getUserOrders=async(req,res)=>{
     try {
-        const {userId}=req.body
+        const userId = req.userId; // from middleware
 
         //display when 'order is COD' or 'order is paid online'
         const orders=await Order.find({
