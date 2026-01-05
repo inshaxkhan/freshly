@@ -28,36 +28,7 @@ export const placeOrderCOD= async(req, res)=>{
             paymentType:"COD",
         });
 
-        //stripe gateway initialize
-        const stripeInstance=new stripe(process.env.STRIPE_SECRET_KEY);
-
-        //create line items for stripe
-        const line_items=productData.map((item)=>{
-            return{
-                price_data:{
-                    currency:"usd",
-                    product_data:{
-                        name:item.name
-                    },
-                    unit_amount: Math.floor(item.price + item.price * 0.02)*100
-                },
-                quantity:item.quantity,
-            }
-        })
-
-        //create session
-        const session=await stripeInstance.checkout.sessions.create({
-            line_items,
-            mode:"payment",
-            success_url: `${origin}/loader?next=my-orders`,
-            cancel_url:`${origin}/cart`,
-            metadata:{
-                orderId: order._id.toString(),
-                userId,
-            }
-        })
-
-        return res.json({success:true, url:session.url })
+        return res.json({success:true, message:"Order placed successfully "})
     } catch (error) {
         console.log(error.message)
         res.json({success:false, message:error.message})
@@ -84,10 +55,10 @@ export const placeOrderStripe= async(req, res)=>{
             //storing details in productData Array for stripe
             productData.push({
                 name: product.name,
-                price:product.offerPrice,
-                quantity:product.quantity,
-            })
-
+                price: product.offerPrice,
+                quantity: item.quantity, // changed
+            });
+            
             return (await acc) + product.offerPrice * item.quantity 
         }, 0)
 
@@ -102,7 +73,38 @@ export const placeOrderStripe= async(req, res)=>{
             paymentType:"Online",
         });
 
-        return res.json({success:true, message:"Order placed successfully "})
+        //stripe gateway initialize
+        const stripeInstance=new stripe(process.env.STRIPE_SECRET_KEY);
+
+        //create line items for stripe
+        const line_items=productData.map((item)=>{
+
+            return{
+                price_data:{
+                    currency:"usd",
+                    product_data:{
+                        name:item.name,
+                    },
+                    unit_amount: Math.floor(item.price + item.price * 0.02)*100
+                },
+                quantity:item.quantity,
+            }
+        })
+        console.log(line_items[0]);
+        //create session
+        const session=await stripeInstance.checkout.sessions.create({
+            line_items,
+            mode:"payment",
+            success_url: `${origin}/loader?next=my-orders`,
+            cancel_url:`${origin}/cart`,
+            metadata:{
+                orderId: order._id.toString(),
+                userId,
+            }
+        })
+
+        return res.json({success:true, url:session.url })
+        
     } catch (error) {
         console.log(error.message)
         res.json({success:false, message:error.message})
@@ -128,6 +130,10 @@ export const getUserOrders=async(req,res)=>{
         res.json({success:false, message:error.message})
     }
 }
+
+
+
+
 
 // get all orders for ADMIN/SELLER: /api/order/seller
 export const getAllOrders=async(req,res)=>{
