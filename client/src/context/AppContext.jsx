@@ -132,7 +132,7 @@ const getCartAmount=()=>{
     useEffect(()=>{
         const updateCart=async()=>{
             try {
-                const {data}=await axios.post('/api/cart/update', {cartItems});
+                const {data}=await axios.post('/api/cart/update', {userId: user._id, cartItems});
                 if(!data.success){
                     toast.error(data.message);
                 }
@@ -142,9 +142,9 @@ const getCartAmount=()=>{
         }
 
         if(user){
-            updateCart()
+            updateCart();
         }
-    },[cartItems])
+    },[cartItems, user])
 
     const value={ navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin, 
         products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery,
